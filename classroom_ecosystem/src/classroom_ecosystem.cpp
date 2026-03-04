@@ -68,5 +68,25 @@ void setup() {
 }
 
 void loop() {
-    
-}
+   //AUTOMATIC
+   temp = bme.readTemperature();
+   tempF = (temp * 1.8)+32;
+   if(tempF >= 70){
+    wemoWrite(COOLER,HIGH);
+    wemoWrite(HEATER,LOW);
+    for(i =0; < PIXELCOUNT; i++){
+    pixel.setPixelColor(i,red);
+    pixel.show();
+    Serial.printf("cooler on\n");
+    }                                                   
+ } 
+ if(tempF <= 60 ){
+    wemoWrite(HEATER,HIGH);
+    wemoWrite(COOLER,LOW);
+    for(i =0; i < PIXELCOUNT; i++){
+        pixel.setPixelColor(i,blue);
+        pixel.show();
+        Serial.printf("Heater on\n");
+    }
+ }}
+ serial.print("temp %0.2f \n",tempf);
